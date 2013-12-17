@@ -5,7 +5,7 @@ multi-direction shooter.
 
 ![alt tag](http://kata.coderdojo.com/images/b/b8/Multi-dim-battle.png)
 
-Because of canavs rotation using translate and transform. I want to build three different but similar shoot 'em ups to examine the 
+Because of canvas rotation using translate and transform. I want to build three different but similar shoot 'em ups to examine the 
 obstacles etc. See template011 and template012
 
 The spaceship will rotate 360 degrees while always positioned in the center of the screen.

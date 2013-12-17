@@ -364,7 +364,7 @@ function draw() {
         context.rotate(degrees*Math.PI/180);
 		context.drawImage(imageObj, -37, -50);
 		
-		context.drawImage(imageObj2, 10, -10);
+		context.drawImage(imageObj2, -30, -10);
 		
 		context.drawImage(imageObj3, -290, -150);
  		context.restore();

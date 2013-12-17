@@ -1,7 +1,7 @@
 <!DOCTYE html><!-- this is HTML5 -->
 <html>
 <head>
-<title>Multi - Dimensional - Battle</title>
+<title>Browser Bar Title</title>
 <link rel=stylesheet href=styles.css>
 <script src=jquery.min.js></script>
 <script src=processing-1.4.1.min.js></script>
@@ -11,7 +11,7 @@
 <body>
 
 <div id="container">
-<h3 id="title">Multi - Dimensional - Battle</h3>
+<h3 id="title">Battle</h3>
 
 
 <div id ="float_left">

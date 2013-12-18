@@ -11,8 +11,6 @@
               };
     })();
 
-  
-
 // example code from mr doob : http://mrdoob.com/lab/javascript/requestanimationframe/
 //var canvas = document.getElementById("myCanvas");
 
@@ -20,6 +18,13 @@
 var  canvas, context, toggle;
 var y= 220;
 var x= 284;
+
+var y2=-10;
+var x2= 10;
+
+var y3=-10;
+var x3= 400;
+
 var mid = 128;
 var dirX = 1;
 var dirY = 1;
@@ -40,8 +45,6 @@ background_obj.src = "deep-space.jpg";
 imageObj.src = "spshipsprite.png";
 imageObj2.src = "spacestation.png";
 imageObj3.src = "blueship4.png";
-
-
 var jump = 'rest';
 var backg_x = 0;
 var backg_y = 0;
@@ -67,9 +70,6 @@ var bullet = {
 	speed: 256 // movement in pixels per second
 };
 
-
-
-
 //function init() {
 
     canvas = document.createElement( 'canvas' );
@@ -78,28 +78,22 @@ var bullet = {
     context = canvas.getContext( '2d' );
     //context.font = "40pt Calibri";
     //context.fillStyle = "white";
-	
-	
 	// align text horizontally center
 	context.textAlign = "center";
 	// align text vertically center
 	context.textBaseline = "middle";	
 	//context.font = "12pt Calibri"; 
 	
-	canvas.width = 8248;
+	//canvas.width = 8248;
 	context.drawImage(background_obj, backg_x, backg_y);
- 	imageData = context.getImageData(0,0,8248,400); //fnord
+ 	//imageData = context.getImageData(0,0,8248,400); //fnord
  	 	    
     //var x = document;
-    canvas.width = 568;
+   // canvas.width = 568;
 
    $( "#container" ).append( canvas );
 //}
 animate();
-
-
-
-
 
 // shoot addition
 var shoot = function(modifier){
@@ -146,19 +140,14 @@ var shoot = function(modifier){
         first = true
     }
 }
-
-
    if (bulletReady) {
 	        context.drawImage(bulletImage, bullet.x, bullet.y);
 	    }
-function animate() {
-    requestAnimFrame( animate );
-   shoot();
-    draw();
-}
 
-		// shoot addition
-  function shoot(){
+
+// shoot addition
+function shoot()
+{
 
     if (dir==1){
 
@@ -193,24 +182,42 @@ function animate() {
     }
 }
 
+function animate() {
+
+    update();
+    requestAnimFrame( animate );
+    shoot();
+    draw();
+}
+
+function update() {
+
+     y2++;
+     x2++;
+     y3++;
+     x3--;     
+ 
+     if (y2==400)
+    {
+        y2=0;
+    }
+
+ if (x2==598)
+    {
+        x2=0;
+    }
 
 
+    if (y3==400)
+    {
+        y3=0;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ if (x3==0)
+    {
+        x3=598;
+    }
+}
 
 function draw() {
 
@@ -235,7 +242,6 @@ function draw() {
 			jump = 'descend';
 		}
 });
-
 	$(document).keydown(function(e) {
 	//alert (e.keyCode);
 	//if space start/stop gameloop
@@ -270,28 +276,21 @@ function draw() {
 	   if (state == 'left')
 	   {
 	   		//x = x-(1 * dirX);
-	   		backg_x = backg_x + 1 ;
+	   	//	backg_x = backg_x + 1 ;
 	   		degrees = degrees - 1;
 	   //		context.setTransform(1,0.5,-0.5,10,10);
 	   }
 		if (state == 'right')
 		{
   		//x		= x + (1 * dirX);
-	  		backg_x = backg_x - 1 ;
+	  	//	backg_x = backg_x - 1 ;
 	  		degrees = degrees +1 ;
 	  	//	context.setTransform(1,0.5,-0.5,1,10,10);
 	  		
 		}
 		if (jump == 'ascend')
 		{
-			//if( red==0 && blue==0 && green==0)
-			//{
-				y = y + 1;
-		//	}
-		//	if ((y <= -40) && (floating != 'true'))
-		//	{
-		//		jump = 'descend';
-		//	}
+
 		}
 		if (jump == 'descend')
 		{
@@ -321,99 +320,22 @@ function draw() {
 		}
 		//canvas.width = 8248;
 		context.clearRect(0,0 , canvas.width, canvas.height);
-		// move the rotation point to the center of the rect
-        //  context.translate( x + 1, y + 1 );
-		// rotate the rect
-	 	// context.rotate(50*Math.PI/180);
 	 
 		context.drawImage(background_obj, backg_x, backg_y);
-		
-		red		= imageData.data[	( (8248 * (destY -10)) + parseInt(0-backg_x + 278) )*4 ]; 
-		green	= imageData.data[ ( ( (8248 * (destY -10)) + parseInt(0-backg_x + 278) )*4 )+ 1];
-		blue	= imageData.data[ ( ( (8248 * (destY -10)) + parseInt(0-backg_x + 278) )*4 )+ 2];
-		if  ((red > mid      &&   green < mid   &&  blue >mid) || (red < mid && green > mid && blue > mid)) {
-			
-			
-			if (jump !="ascend")
-			{
-			//	jump = 'descend';
-			}
-			inbounds	= 'true';
-			float		= 'false';
-		}
-		
-		
-		
-		
-		if ( red==0 && green==255 && blue==246 ){
-			jump		= 'ascend';
-			float		= 'true';
-			inbounds	= 'true';
-		}
-		if( red==0 && blue==0 && green==0){
-			float		= 'false';
-			inbounds	= 'false';
-		}
-	
+
 		context.save();
  
         context.beginPath();
 	 	context.translate( 290,210 );
         // rotate the rect
-        
         context.rotate(degrees*Math.PI/180);
 		context.drawImage(imageObj, -37, -50);
 		
-		context.drawImage(imageObj2, 10, -10);
-		
-		context.drawImage(imageObj3, -290, -150);
- 		context.restore();
+		context.restore();
 
-		//red = imageData.data;
-		//name = red[100];
-		//canvas.width = 568;
+		context.drawImage(imageObj2, x2, y2);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		context.drawImage(imageObj3, x3, y3);
 		
 		str = "width=" + imageData.width + " height=" +	imageData.height 
 		+ " red :" + red  + " green :" + green + " blue :" + blue  
@@ -425,7 +347,6 @@ function draw() {
 		
 		str2 = "x: " + x + "y :" + y;
 		context.fillText(str2, 20, 34);
-		
+
 		context.fillStyle = 'white';
-	
 	}

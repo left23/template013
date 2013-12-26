@@ -70,9 +70,15 @@ var bullet = {
 	speed: 256 // movement in pixels per second
 };
 
+
+var hasTouch = !!('ontouchstart' in window);
+
+
+
 //function init() {
 
-    canvas = document.createElement( 'canvas' );
+    canvas = document.createElement('canvas');
+    canvas.id = 'game';
     canvas.width = 568;
     canvas.height = 400;
     context = canvas.getContext( '2d' );
@@ -337,16 +343,142 @@ function draw() {
 		
 		context.drawImage(imageObj3, x3, y3);
 		
-		str = "width=" + imageData.width + " height=" +	imageData.height 
-		+ " red :" + red  + " green :" + green + " blue :" + blue  
-		+ " destX :" + parseInt(0-backg_x)  + " destY :" +destY 
-		+ " inbounds:" + inbounds  
-		+ " float: " + floating + " jump : " + jump;
+		//str = "width=" + imageData.width + " height=" +	imageData.height 
+		//+ " red :" + red  + " green :" + green + " blue :" + blue  
+		//+ " destX :" + parseInt(0-backg_x)  + " destY :" +destY 
+		//+ " inbounds:" + inbounds  
+		//+ " float: " + floating + " jump : " + jump;
 		
-		context.fillText(str, 20, 14);
+		//context.fillText(str, 20, 14);
 		
-		str2 = "x: " + x + "y :" + y;
-		context.fillText(str2, 20, 34);
+		//str2 = "x: " + x + "y :" + y;
+		//context.fillText(str2, 20, 34);
 
 		context.fillStyle = 'white';
+
+		
 	}
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		function goLeft(){
+			   		degrees = degrees - 1;
+			}
+			
+		
+		function goRight(){
+			   		degrees = degrees + 1;
+			}
+
+	
+		//$( "#float_left" ).click(function() {
+		//	//alert( "left" );
+		//	goLeft();
+		//});
+	
+		//$( "#float_right" ).click(function() {
+			//alert( "right" );
+		//	goRight();
+		//});
+	
+		
+	
+		
+		
+		
+
+if (hasTouch)
+{		
+		
+//alert( "touch" );
+		//$( "#float_left" ).on('touchstart', function () {
+			//alert( "left" );
+		//	goLeft();
+		//});
+		
+		
+		
+		
+var currentElement = null;
+$("#float_left").on('touchstart',function(e) {
+  currentElement = this;
+  $(this).addClass('hover');
+  e.preventDefault();
+});
+	
+var currentElement = null;
+$("#float_right").on('touchstart',function(e) {
+  currentElement = this;
+  $(this).addClass('hover');
+  e.preventDefault();
+});
+
+$("#float_left").on('touchmove',function(e) {
+  var evt = e.originalEvent;
+  var element = document.elementFromPoint(evt.changedTouches[0].clientX, evt.changedTouches[0].clientY);
+  if(element != currentElement) {
+    $(this).removeClass('hover');
+    currentElement = null;
+  }
+  e.preventDefault();
+});
+
+$("#float_right").on('touchmove',function(e) {
+  var evt = e.originalEvent;
+  var element = document.elementFromPoint(evt.changedTouches[0].clientX, evt.changedTouches[0].clientY);
+  if(element != currentElement) {
+    $(this).removeClass('hover');
+    currentElement = null;
+  }
+  e.preventDefault();
+});
+
+$("#float_left").on('touchend',function(e) {
+  var evt = e.originalEvent;
+  $(this).removeClass('hover');
+  var element = document.elementFromPoint(evt.changedTouches[0].clientX, evt.changedTouches[0].clientY);
+  if(element == currentElement) {
+    $(this).text('Touched');
+	goLeft();
+  }
+  currentElement = null;
+  e.preventDefault();
+});		
+
+
+$("#float_right").on('touchend',function(e) {
+  var evt = e.originalEvent;
+  $(this).removeClass('hover');
+  var element = document.elementFromPoint(evt.changedTouches[0].clientX, evt.changedTouches[0].clientY);
+  if(element == currentElement) {
+    $(this).text('Touched');
+	goRight();
+  }
+  currentElement = null;
+  e.preventDefault();
+});		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+}		
+	
+	
+	
+	
+	

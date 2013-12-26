@@ -19,14 +19,14 @@ color:rgb(0,0,0);
 }
 
 #container {
-background: rgba(0,0,0,1);
+/*background: rgba(0,0,0,1);
 margin: 0 auto;
 width: 574px;
-/*height:456px;*/
+height:456px;
 padding: 10px;
 text-align: center;
 border: 3px solid rgba(123,123,123,1);
-overflow:hidden;
+overflow:hidden;*/
 }
 
 h3#title {
@@ -35,9 +35,6 @@ background:rgba(0,0,255,1);
 margin:0;
 }
 
-canvas {
-border: 1px solid rgba(255,255,255,1);
-}
 
 a {color:rgb(0,0,0);}
 a:hover {color:rgb(255,255,255);}
@@ -49,19 +46,23 @@ text-align:left;
 #float_left {
 float:left;
 background: rgba(255,0,0,1);
-margin: 10px ;
+margin: 10px;
+height:50px;
 width: 245px;
 padding: 10px;
 border: 1px solid rgba(0,0,0,1);
+cursor:pointer;
 }
 
 #float_right {
 float: right;
 background: rgba(0,255,0,1);
 margin: 10px;
+height:50px;
 width: 245px;
 padding: 10px;
 border: 1px solid rgba(0,0,0,1);
+cursor:pointer;
 }
 
 #float_left:hover,
